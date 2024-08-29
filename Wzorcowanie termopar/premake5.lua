@@ -38,7 +38,7 @@ project "Wzorcowanie Termopar"
 
 	libdirs 
 	{ 
-		"../Biblioteki/lib"
+		"src/vendor/dependecies/lib"
 	}
 
 	links 
