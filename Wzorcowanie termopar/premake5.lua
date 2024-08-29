@@ -18,19 +18,12 @@ project "Wzorcowanie Termopar"
 		"src/vendor/GLFW/**.h",
 		"src/vendor/stb/**.h",
 		"src/vendor/stb/**.cpp",
-		"src/vendor/imgui-master/imgui.h",
-    	"src/vendor/imgui-master/imgui.cpp",
-    	"src/vendor/imgui-master/imgui_draw.cpp",
-    	"src/vendor/imgui-master/imgui_tables.cpp",
-    	"src/vendor/imgui-master/imgui_widgets.cpp",
-   		"src/vendor/imgui-master/backends/imgui_impl_glfw.h",
-    	"src/vendor/imgui-master/backends/imgui_impl_glfw.cpp",
-   		"src/vendor/imgui-master/backends/imgui_impl_opengl3.h",
-   		"src/vendor/imgui-master/backends/imgui_impl_opengl3.cpp",
-		"src/vendor/implot-master/implot.h",
-		"src/vendor/implot-master/implot.cpp",
-		"src/vendor/implot-master/implot_items.h",
-		"src/vendor/implot-master/implot_items.cpp"
+		"src/vendor/imgui/**.h",
+    	"src/vendor/imgui/**.cpp",
+   		"src/vendor/imgui/backends/**.h",
+    	"src/vendor/imgui/backends/**.cpp",
+		"src/vendor/implot/**.h",
+		"src/vendor/implot/**.cpp",
 	}
 
 	includedirs

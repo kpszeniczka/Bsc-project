@@ -1,0 +1,9 @@
+[submodule "implot"]
+	path = implot
+	url = https://github.com/kpszeniczka/implot.git
+[submodule "Wzorcowanie termopar/src/vendor/implot"]
+	path = Wzorcowanie termopar/src/vendor/implot
+	url = https://github.com/kpszeniczka/implot.git
+[submodule "Wzorcowanie termopar/src/vendor/imgui"]
+	path = Wzorcowanie termopar/src/vendor/imgui
+	url = https://github.com/kpszeniczka/imgui.git
