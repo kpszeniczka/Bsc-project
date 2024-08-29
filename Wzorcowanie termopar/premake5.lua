@@ -31,9 +31,9 @@ project "Wzorcowanie Termopar"
 		"src",
 		"src/vendor",
 		"src/vendor/stb",
-		"src/vendor/imgui-master",
-		"src/vendor/imgui-master/backends",
-		"src/vendor/implot-master"
+		"src/vendor/imgui",
+		"src/vendor/imgui/backends",
+		"src/vendor/implot"
 	}
 
 	libdirs 
