@@ -38,7 +38,7 @@ project "Wzorcowanie Termopar"
 
 	libdirs 
 	{ 
-		"src/vendor/dependecies/lib"
+		"src/dependencies/GLFW/lib"
 	}
 
 	links 
