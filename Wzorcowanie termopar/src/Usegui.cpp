@@ -64,13 +64,11 @@ void UseGui::MainGui(GLFWwindow* window) {
 
     static float history = 100.0f;
     static ImPlotAxisFlags flags = 0;
-    static float x_start;
 
-    x_start = measurement_time - history;
+    static float x_start = 0;
+    static float x_end;
 
-    if (measurement_time - history < 0) {
-        x_start = 0;
-    }
+    x_end = x_start + history;
 
     ImGuiIO& io = ImGui::GetIO();
 
@@ -94,9 +92,10 @@ void UseGui::MainGui(GLFWwindow* window) {
             if (ImGui::Button("piec")) {
                 is_open = false;
             }
+            ImGui::SliderFloat("x_start", &x_start, 0.0f, measurement_time);
             if (ImPlot::BeginPlot("MainPlot", ImVec2(-1, -1))) {
                 ImPlot::SetupAxes("Czas", "Temperatura", flags, flags);
-                ImPlot::SetupAxisLimits(ImAxis_X1, x_start, measurement_time, ImGuiCond_Always);
+                ImPlot::SetupAxisLimits(ImAxis_X1, x_start, measurement_time < x_end ? measurement_time : x_end, ImGuiCond_Always);
                 ImPlot::SetupAxisLimits(ImAxis_Y1, 0, max_value, ImGuiCond_Always);
                 ImPlot::PlotLine("Mouse X", &sdata1.Data[0].x, &sdata1.Data[0].y, sdata1.Data.size(), 0, sdata1.Offset, 2 * sizeof(float));
                 ImPlot::PlotLine("Mouse Y", &sdata2.Data[0].x, &sdata2.Data[0].y, sdata2.Data.size(), 0, sdata2.Offset, 2 * sizeof(float));

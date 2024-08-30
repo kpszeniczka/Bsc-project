@@ -6,7 +6,7 @@ bool dragging = false;
 double lastX, lastY;
 
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
-    if (button == GLFW_MOUSE_BUTTON_LEFT) {
+    if (button == GLFW_MOUSE_BUTTON_MIDDLE) {
         if (action == GLFW_PRESS) {
             dragging = true;
             glfwGetCursorPos(window, &lastX, &lastY);
