@@ -74,7 +74,7 @@ void UseGui::MainGui(GLFWwindow* window) {
 
     if (io.MouseWheel != 0) {
         history -= io.MouseWheel * 5.0f;
-        if (history < 1.0f) history = 1.0f;
+        if (history < 10.0f) history = 10.0f;
     }
 
     if(is_open){
@@ -92,7 +92,21 @@ void UseGui::MainGui(GLFWwindow* window) {
             if (ImGui::Button("piec")) {
                 is_open = false;
             }
-            ImGui::SliderFloat("x_start", &x_start, 0.0f, measurement_time);
+            ImGui::SliderFloat("x_start", &x_start, 0.0f, measurement_time - 10);
+            ImGui::Separator();
+            ImGui::Columns(2, "plot", 0);
+            ImGui::SetColumnWidth(0, 60);
+            ImGui::Checkbox("A1", &is_open);
+            ImGui::Checkbox("A2", &is_open);
+            ImGui::Checkbox("A3", &is_open);
+            ImGui::Checkbox("A4", &is_open);
+            ImGui::Checkbox("A5", &is_open);
+            ImGui::Checkbox("B1", &is_open);
+            ImGui::Checkbox("B2", &is_open);
+            ImGui::Checkbox("B3", &is_open);
+            ImGui::Checkbox("B4", &is_open);
+            ImGui::Checkbox("B5", &is_open);
+            ImGui::NextColumn();
             if (ImPlot::BeginPlot("MainPlot", ImVec2(-1, -1))) {
                 ImPlot::SetupAxes("Czas", "Temperatura", flags, flags);
                 ImPlot::SetupAxisLimits(ImAxis_X1, x_start, measurement_time < x_end ? measurement_time : x_end, ImGuiCond_Always);
