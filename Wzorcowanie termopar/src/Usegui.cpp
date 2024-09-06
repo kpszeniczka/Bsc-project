@@ -43,6 +43,7 @@ void UseGui::NewFrame() {
 void UseGui::MainGui(GLFWwindow* window) {
     static bool use_work_area = true;
     static bool is_open = true;
+    static bool used_sensors[10] = {false};
     ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_MenuBar;
     const ImGuiViewport* viewport = ImGui::GetMainViewport();
     ImGui::SetNextWindowPos(use_work_area ? viewport->WorkPos : viewport->Pos);
@@ -95,17 +96,24 @@ void UseGui::MainGui(GLFWwindow* window) {
             ImGui::SliderFloat("x_start", &x_start, 0.0f, measurement_time - 10);
             ImGui::Separator();
             ImGui::Columns(2, "plot", 0);
-            ImGui::SetColumnWidth(0, 60);
-            ImGui::Checkbox("A1", &is_open);
-            ImGui::Checkbox("A2", &is_open);
-            ImGui::Checkbox("A3", &is_open);
-            ImGui::Checkbox("A4", &is_open);
-            ImGui::Checkbox("A5", &is_open);
-            ImGui::Checkbox("B1", &is_open);
-            ImGui::Checkbox("B2", &is_open);
-            ImGui::Checkbox("B3", &is_open);
-            ImGui::Checkbox("B4", &is_open);
-            ImGui::Checkbox("B5", &is_open);
+            ImGui::SetColumnWidth(0, 150);
+
+            if (ImGui::BeginTable("switch", 2)) {
+                for (int row = 0; row < 10; row++) {
+                    ImGui::TableNextRow();  // Przejœcie do nowego wiersza
+
+                    // Pierwsza kolumna - checkbox
+                    ImGui::TableNextColumn();
+                    std::string label = (row > 4) ? "B" + std::to_string(row - 5) : "A" + std::to_string(row);
+                    ImGui::Checkbox(label.c_str(), &used_sensors[row]);
+
+                    // Druga kolumna - tekst
+                    ImGui::TableNextColumn();
+                    ImGui::Text("Sensor %d", row);  // Wyœwietlenie tekstu w drugiej kolumnie
+                    ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, ImGui::GetColorU32(ImGuiCol_Button));
+                }
+                ImGui::EndTable();
+            }
             ImGui::NextColumn();
             if (ImPlot::BeginPlot("MainPlot", ImVec2(-1, -1))) {
                 ImPlot::SetupAxes("Czas", "Temperatura", flags, flags);
