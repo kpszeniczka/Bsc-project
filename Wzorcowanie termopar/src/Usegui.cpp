@@ -100,16 +100,14 @@ void UseGui::MainGui(GLFWwindow* window) {
 
             if (ImGui::BeginTable("switch", 2)) {
                 for (int row = 0; row < 10; row++) {
-                    ImGui::TableNextRow();  // Przejœcie do nowego wiersza
+                    ImGui::TableNextRow();
 
-                    // Pierwsza kolumna - checkbox
                     ImGui::TableNextColumn();
                     std::string label = (row > 4) ? "B" + std::to_string(row - 5) : "A" + std::to_string(row);
                     ImGui::Checkbox(label.c_str(), &used_sensors[row]);
 
-                    // Druga kolumna - tekst
                     ImGui::TableNextColumn();
-                    ImGui::Text("Sensor %d", row);  // Wyœwietlenie tekstu w drugiej kolumnie
+                    ImGui::Text("Sensor %d", row);
                     ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, ImGui::GetColorU32(ImGuiCol_Button));
                 }
                 ImGui::EndTable();
